@@ -20,15 +20,14 @@ tags_metadata = [
 ]
 
 # Start FastApi
-app = FastAPI(title="Validate API", version="0.1", summary="API to validate brazilian documents", openapi_tags=tags_metadata )
+app = FastAPI(title="Validate API", version="0.2", summary="API to validate brazilian documents", openapi_tags=tags_metadata )
 
-#@app.get("/")
-#def read_root():
-    #return {"DOCS": "https://validate-api.onrender.com/docs"}
-    #return RedirectResponse("https://validate-api.onrender.com/docs", status_code=200)
+@app.get("/", include_in_schema=False)
+def read_root():
+    return RedirectResponse("https://validate-api.onrender.com/docs", status_code=200)
 
 
-@app.get("/validate-cpf/{number}", tags=["Validate numbe"])
+@app.get("/validate-cpf/{number}", tags=["Validate number"])
 def validate_cpf(number: Union[str, None] = None):
 
     cpf = CPF()
@@ -39,7 +38,7 @@ def validate_cpf(number: Union[str, None] = None):
     return {"validate": validate, "doc": number, 'doc_type' : 'CPF'}
 
 
-@app.get("/validate-cnh/{number}", tags=["Validate numbe"])
+@app.get("/validate-cnh/{number}", tags=["Validate number"])
 def validate_cnh(number: Union[str, None] = None):
 
     cnh = CNH()
@@ -50,7 +49,7 @@ def validate_cnh(number: Union[str, None] = None):
     return {"validate": validate, "doc": number, 'doc_type' : 'CNH'}
 
 
-@app.get("/validate-cnpj/{number}", tags=["Validate numbe"])
+@app.get("/validate-cnpj/{number}", tags=["Validate number"])
 def validate_cnpj(number: Union[str, None] = None):
 
     cnpj = CNPJ()
@@ -61,7 +60,7 @@ def validate_cnpj(number: Union[str, None] = None):
     return {"validate": validate, "doc": number, 'doc_type' : 'CNPJ'}
 
 
-@app.get("/validate-cns/{number}", tags=["Validate numbe"])
+@app.get("/validate-cns/{number}", tags=["Validate number"])
 def validate_cns(number: Union[str, None] = None):
 
     cns = CNS()
