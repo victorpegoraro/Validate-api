@@ -24,7 +24,7 @@ def validate_cpf(number: Union[str, None] = None):
 
 
 @app.get("/validate-cnh/{number}")
-def validate_cpf(number: Union[str, None] = None):
+def validate_cnh(number: Union[str, None] = None):
 
     cnh = CNH()
     validate = cnh.validate(number)
@@ -34,7 +34,7 @@ def validate_cpf(number: Union[str, None] = None):
     return {"validate": validate, "doc": number, 'doc_type' : 'CNH'}
 
 
-@app.get("/validate-cns/{number}")
+@app.get("/validate-cnpj/{number}")
 def validate_cnpj(number: Union[str, None] = None):
 
     cnpj = CNPJ()
@@ -46,7 +46,7 @@ def validate_cnpj(number: Union[str, None] = None):
 
 
 @app.get("/validate-cns/{number}")
-def validate_cnpj(number: Union[str, None] = None):
+def validate_cns(number: Union[str, None] = None):
 
     cns = CNS()
     validate = cns.validate(number)
