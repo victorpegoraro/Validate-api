@@ -16,7 +16,7 @@ def read_root():
 
 
 @app.get("/validate-cpf/{number}")
-def read_item(number: Union[str, None] = None):
+def validate_cpf(number: Union[str, None] = None):
 
     cpf = CPF()
 
