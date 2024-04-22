@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from fastapi.responses import RedirectResponse, HTMLResponse
 
-from cpf import cpf_validate
+from validate_docbr import CPF
 
 app = FastAPI()
 
@@ -15,9 +15,15 @@ def read_root():
     return RedirectResponse("https://validate-api.onrender.com/docs", status_code=303)
 
 
-@app.get("/cpf/{cpf}")
-def read_item(cpf: Union[str, None] = None):
+@app.get("/validate-cpf/{number}")
+def read_item(number: Union[str, None] = None):
 
-    validate = cpf_validate( cpf )
+    cpf = CPF()
 
-    return {"validate": validate, "doc": cpf}
+    # Validar CPF
+    validate = cpf.validate(number)  # True
+
+    if( validate ):
+        number = cpf.mask( number )
+
+    return {"validate": validate, "doc": number}
