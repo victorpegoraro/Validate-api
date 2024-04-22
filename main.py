@@ -3,8 +3,24 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse, HTMLResponse
 from validate_docbr import CPF, CNH, CNPJ, CNS
 
-app = FastAPI(title="Validate API", version="0.1", summary="API to validate brazilian documents" )
+# Config FastApi
+tags_metadata = [
+    {
+        "name": "Validate number",
+        "description": "Logical validation of document numbers",
+    },
+    # {
+    #     "name": "items",
+    #     "description": "Manage items. So _fancy_ they have their own docs.",
+    #     "externalDocs": {
+    #         "description": "Items external docs",
+    #         "url": "https://fastapi.tiangolo.com/",
+    #     },
+    # },
+]
 
+# Start FastApi
+app = FastAPI(title="Validate API", version="0.1", summary="API to validate brazilian documents", openapi_tags=tags_metadata )
 
 #@app.get("/")
 #def read_root():
@@ -12,7 +28,7 @@ app = FastAPI(title="Validate API", version="0.1", summary="API to validate braz
     #return RedirectResponse("https://validate-api.onrender.com/docs", status_code=200)
 
 
-@app.get("/validate-cpf/{number}")
+@app.get("/validate-cpf/{number}", tags=["Validate numbe"])
 def validate_cpf(number: Union[str, None] = None):
 
     cpf = CPF()
@@ -23,7 +39,7 @@ def validate_cpf(number: Union[str, None] = None):
     return {"validate": validate, "doc": number, 'doc_type' : 'CPF'}
 
 
-@app.get("/validate-cnh/{number}")
+@app.get("/validate-cnh/{number}", tags=["Validate numbe"])
 def validate_cnh(number: Union[str, None] = None):
 
     cnh = CNH()
@@ -34,7 +50,7 @@ def validate_cnh(number: Union[str, None] = None):
     return {"validate": validate, "doc": number, 'doc_type' : 'CNH'}
 
 
-@app.get("/validate-cnpj/{number}")
+@app.get("/validate-cnpj/{number}", tags=["Validate numbe"])
 def validate_cnpj(number: Union[str, None] = None):
 
     cnpj = CNPJ()
@@ -45,7 +61,7 @@ def validate_cnpj(number: Union[str, None] = None):
     return {"validate": validate, "doc": number, 'doc_type' : 'CNPJ'}
 
 
-@app.get("/validate-cns/{number}")
+@app.get("/validate-cns/{number}", tags=["Validate numbe"])
 def validate_cns(number: Union[str, None] = None):
 
     cns = CNS()
