@@ -1,10 +1,7 @@
 from typing import Union
-
 from fastapi import FastAPI
-
 from fastapi.responses import RedirectResponse, HTMLResponse
-
-from validate_docbr import CPF
+from validate_docbr import CPF, CNH
 
 app = FastAPI(title="Validate API", version="0.1" )
 
@@ -19,11 +16,19 @@ def read_root():
 def validate_cpf(number: Union[str, None] = None):
 
     cpf = CPF()
-
-    # Validar CPF
-    validate = cpf.validate(number)  # True
-
+    validate = cpf.validate(number)
     if( validate ):
         number = cpf.mask( number )
 
-    return {"validate": validate, "doc": number}
+    return {"validate": validate, "doc": number, 'doc_type' : 'CPF'}
+
+
+@app.get("/validate-cnh/{number}")
+def validate_cpf(number: Union[str, None] = None):
+
+    cnh = CNH()
+    validate = cnh.validate(number)
+    if( validate ):
+        number = cnh.mask( number )
+
+    return {"validate": validate, "doc": number, 'doc_type' : 'CNH'}
