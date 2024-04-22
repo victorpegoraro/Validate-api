@@ -71,7 +71,7 @@ def validate_cns(number: Union[str, None] = None):
 
     return {"validate": validate, "doc": number, 'doc_type' : 'CNS'}
 
-@app.get("/card-brand/{number}", tags=["Validate card"])
+@app.get("/card-brand/{number}", tags=["Validate card"] )
 def card_brand(number: Union[str, None] = None):
     # Brands regex
     brands = {
