@@ -6,7 +6,7 @@ from fastapi.responses import RedirectResponse, HTMLResponse
 
 from validate_docbr import CPF
 
-app = FastAPI()
+app = FastAPI(title="Validate API", version="0.1" )
 
 
 @app.get("/")
