@@ -6,10 +6,10 @@ from validate_docbr import CPF, CNH, CNPJ, CNS
 app = FastAPI(title="Validate API", version="0.1", summary="API to validate brazilian documents" )
 
 
-@app.get("/")
-def read_root():
+#@app.get("/")
+#def read_root():
     #return {"DOCS": "https://validate-api.onrender.com/docs"}
-    return RedirectResponse("https://validate-api.onrender.com/docs", status_code=200)
+    #return RedirectResponse("https://validate-api.onrender.com/docs", status_code=200)
 
 
 @app.get("/validate-cpf/{number}")
