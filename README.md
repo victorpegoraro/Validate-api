@@ -2,7 +2,7 @@
 
 API to validate brazilian documents
 
-
+Doc suport : CPF , CNH , CNPH , CNS , Card brand
 
 ## Documentação da API
 
